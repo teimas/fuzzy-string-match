@@ -25,19 +25,12 @@ begin
                              'LICENSE.txt',
                              'README.md'].to_a
     gemspec.add_development_dependency( "rspec" )
-    gemspec.add_development_dependency( "amatch" )
-    gemspec.add_dependency('RubyInline', '>= 3.8.6')
-    gemspec.required_ruby_version = '>= 1.9.1'
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install jeweler"
 end
 
 task :check do
-  sh "ruby -I ./lib /usr/local/bin/spec -b ./test/fuzzystringmatch_spec.rb"
-end
-
-task :bench do
-  sh "ruby ./benchmark/vs_amatch.rb"
+  sh "ruby -I ./lib `which rspec` -b ./test/fuzzystringmatch_spec.rb"
 end
 
